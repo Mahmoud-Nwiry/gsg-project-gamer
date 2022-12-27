@@ -6,7 +6,7 @@ import Signup from './pages/Signup'
 class App extends Component {
 
   state = {
-    page: 'logins'
+    page: 'login'
   };
 
   handelPage = (page) => {
@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        {this.state.page === 'login' ? <Login changePage={this.handelPage} /> : <Signup changePage={this.handelPage} />}
+        {this.state.page === 'login' ? <Login changePage={this.handelPage} /> : this.state.page === 'signup' ? <Signup changePage={this.handelPage} /> : "Page not found"}
       </div>
     );
   }
