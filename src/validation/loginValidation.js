@@ -1,8 +1,11 @@
 import * as yup from "yup";
 
 const loginSchema = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.string().min(8).matches("^[a-zA-Z0-9!@#$&()-`.+,/\"]*$").required(),
+    email: yup.string()
+            .email()
+            .required("Email is required"),
+    password: yup.string()
+        .required("Password is required"),
 })
 
 export default loginSchema;
