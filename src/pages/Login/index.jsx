@@ -8,54 +8,80 @@ import Container from "../../components/container";
 import { Body, H1 } from "../../components/Typography";
 import IconButton from "../../components/IconButton";
 
-
-import GoogleIcon from '../../assets/images/google_icon.png';
-import TwitterIcon from '../../assets/images/twitter_icon.png';
-import LinlkedinIcon from '../../assets/images/linkedin_icon.png';
-import GithubIcon from '../../assets/images/github_icon.png';
+import GoogleIcon from "../../assets/images/google_icon.png";
+import TwitterIcon from "../../assets/images/twitter_icon.png";
+import LinlkedinIcon from "../../assets/images/linkedin_icon.png";
+import GithubIcon from "../../assets/images/github_icon.png";
 import OrLine from "../../components/OrLine";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 
+import loginSchema from "../../validation/loginValidation";
+import Swal from "sweetalert2";
+
 const icons = [
-    {
-        id : 1,
-        src: GoogleIcon,
-        alt: "google icon",
-        link : '#'
-    },
-    {
-        id : 2,
-        src: TwitterIcon,
-        alt: "twitter icon",
-        link : '#'
-    },
-    {
-        id : 3,
-        src: LinlkedinIcon,
-        alt: "linkedin icon",
-        link : '#'
-    },
-    {
-        id : 4,
-        src: GithubIcon,
-        alt: "github icon",
-        link : '#'
-    }
-]
+  {
+    id: 1,
+    src: GoogleIcon,
+    alt: "google icon",
+    link: "#",
+  },
+  {
+    id: 2,
+    src: TwitterIcon,
+    alt: "twitter icon",
+    link: "#",
+  },
+  {
+    id: 3,
+    src: LinlkedinIcon,
+    alt: "linkedin icon",
+    link: "#",
+  },
+  {
+    id: 4,
+    src: GithubIcon,
+    alt: "github icon",
+    link: "#",
+  },
+];
 
 export default class Login extends Component {
+  state = {
+    email: "",
+    password: "",
+  };
 
-    state = {
-        email : "",
-        password : "",
-    }
+  returnValue = (e) => {
+    const { id, value } = e.target;
+    this.setState({ [id]: value });
+  };
 
-    returnValue = (e) => {
-        const {id, value} = e.target;
-        this.setState({[id] : value});
-    }
+  sendData = (e) => {
+    e.preventDefault();
+
+    loginSchema
+      .validate({
+        email: this.state.email,
+        password: this.state.password,
+      })
+      .then((isValid) => {
+        if (isValid)
+          Swal.fire({
+            title: "Login Success",
+            text: `Welcome ${this.state.email}.`,
+            icon: "success",
+          });
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Login Field",
+          text: `${err.errors[0]}.`,
+          icon: "error",
+        });
+      });
+  };
 
   render() {
     return (
@@ -72,28 +98,51 @@ export default class Login extends Component {
           <img src={Gear} alt="gear" className="gear_img" />
         </div>
 
-
         <div className="login_right">
-            <Container>
-                <div className="titles">
-                    <H1 text="Join the game!"/>
-                    <Body text="Go inside the best gamers social network!" />
-                </div>
+          <Container>
+            <div className="titles">
+              <H1 text="Join the game!" />
+              <Body text="Go inside the best gamers social network!" />
+            </div>
 
-                <div className="icons_box">
-                    <div className="line"></div>
-                    {
-                        icons.map(item => <IconButton icon={item.src} alt={item.alt} link={item.link} key={item.id} />)
-                    }
-                </div>
-                <OrLine />
-                <form>
-                    <Input label="Your Email" value={this.state.email} type="email" id="email" placeholder="Write your email" returnValue={this.returnValue} />
-                    <Input label="Enter your password" value={this.state.password} type="password" id="password" placeholder="•••••••••" returnValue={this.returnValue} />
-                    <Button text="Login" classes="btn btn-primary mt" />
-                    <p className="create_account">Don’t have an account? <span onClick={() => this.props.changePage('signup')}>Register</span></p>
-                </form>
-            </Container>
+            <div className="icons_box">
+              <div className="line"></div>
+              {icons.map((item) => (
+                <IconButton
+                  icon={item.src}
+                  alt={item.alt}
+                  link={item.link}
+                  key={item.id}
+                />
+              ))}
+            </div>
+            <OrLine />
+            <form onSubmit={this.sendData}>
+              <Input
+                label="Your Email"
+                value={this.state.email}
+                type="email"
+                id="email"
+                placeholder="Write your email"
+                returnValue={this.returnValue}
+              />
+              <Input
+                label="Enter your password"
+                value={this.state.password}
+                type="password"
+                id="password"
+                placeholder="•••••••••"
+                returnValue={this.returnValue}
+              />
+              <Button text="Login" classes="btn btn-primary mt" />
+              <p className="create_account">
+                Don’t have an account?{" "}
+                <span onClick={() => this.props.changePage("signup")}>
+                  Register
+                </span>
+              </p>
+            </form>
+          </Container>
         </div>
       </div>
     );

@@ -6,7 +6,7 @@ import Signup from './pages/Signup'
 class App extends Component {
 
   state = {
-    page: 'login'
+    page: 'signup'
   };
 
   handelPage = (page) => {

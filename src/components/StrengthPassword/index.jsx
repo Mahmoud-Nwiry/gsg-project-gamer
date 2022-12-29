@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './strengthPassword.css'
+import "./strengthPassword.css";
 
 export default class StrengthPassword extends Component {
   render() {
