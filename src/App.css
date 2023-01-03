@@ -37,6 +37,10 @@ label {
   margin-bottom: 14px;
 }
 
+a {
+  text-decoration: none;
+}
+
 .btn {
   background: #ffffff;
   color: #000000;
