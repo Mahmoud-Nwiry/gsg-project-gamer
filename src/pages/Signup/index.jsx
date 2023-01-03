@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./signup.css";
 
-import BoxWithBgImg from "../../components/BoxWithBgImg";
 import Logo from "../../assets/images/logolight.png";
 import PointsImg from "../../assets/images/points.svg";
 import Corner from "../../assets/images/corner.png";
 import Arrow from "../../assets/images/backarrow.svg";
 import GoogleIcon from "../../assets/images/googleIcon.svg";
 
+import BoxWithBgImg from "../../components/BoxWithBgImg";
 import Container from "../../components/container";
 import { Body, H2 } from "../../components/Typography";
 import Input from "../../components/Input";
@@ -15,8 +15,9 @@ import Button from "../../components/Button";
 import OrLine from "../../components/OrLine";
 import StrengthPassword from "../../components/StrengthPassword";
 
-import signupSchema from "../../validation/signupValidation";
 import Swal from "sweetalert2";
+import signupSchema from "../../validation/signupValidation";
+import { Link } from "react-router-dom";
 
 export default class Signup extends Component {
   state = {
@@ -140,14 +141,14 @@ export default class Signup extends Component {
         </BoxWithBgImg>
 
         <div className="content_box">
-          <div
+          <Link
+            to='/login'
             className="back_btn"
-            onClick={() => this.props.changePage("login")}
           >
             <button>
               <img src={Arrow} alt="arrow" /> Back
             </button>
-          </div>
+          </Link>
           <Container>
             <H2 text="Register Individual Account!" />
             <Body text="For the purpose of gamers regulation, your details are required." />

@@ -1,25 +1,37 @@
-import React, { Component } from 'react';
+import { useRoutes } from 'react-router-dom'
 import './App.css';
+
 import Login from './pages/Login';
 import Signup from './pages/Signup'
+import Home from './pages/Home'; 
+import Error404 from './pages/Error404'; 
 
-class App extends Component {
+const App = () => {
 
-  state = {
-    page: 'signup'
-  };
+  let routes = useRoutes([
+    {
+      path: '/',
+      element: <Login />
+    },
+    {
+      path: '/dashboard/:id',
+      element: <Home />
+    },
+    {
+      path: '/login',
+      element: <Login />
+    },
+    {
+      path: '/signup',
+      element: <Signup/>
+    },
+    {
+      path: '*',
+      element: <Error404 />
+    }
+  ])
 
-  handelPage = (page) => {
-    this.setState({page: page});
-  }
-
-  render() {
-    return (
-      <div>
-        {this.state.page === 'login' ? <Login changePage={this.handelPage} /> : this.state.page === 'signup' ? <Signup changePage={this.handelPage} /> : "Page not found"}
-      </div>
-    );
-  }
+  return routes
 }
 
 export default App;
