@@ -1,0 +1,17 @@
+
+.games_box {
+    padding-top: 35px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    overflow-x: scroll;
+}
+
+.games_box::-webkit-scrollbar {
+    width: 0px;
+}
+
+.games_box .game_card {
+    min-width: 440px;
+}

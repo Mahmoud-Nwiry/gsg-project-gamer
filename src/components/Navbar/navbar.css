@@ -1,4 +1,5 @@
 nav {
+  width: 100%;
   padding: 25px;
   padding-bottom: 0;
   display: flex;
@@ -7,20 +8,20 @@ nav {
 }
 
 nav .text {
-    font-size: 25px;
-    line-height: 35px;
+    font-size: 20px;
+    line-height: 30px;
     text-align: right;
-    width: 250px;
+    width: 200px;
     color: #000000;
 }
 
 nav .image {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 
 nav .image:hover {
@@ -34,4 +35,5 @@ nav .image:hover {
 
 nav .image img {
   max-width: 92%;
+  border-radius: 20px;
 }

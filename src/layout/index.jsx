@@ -13,7 +13,9 @@ export default class index extends Component {
         <Sidebar />
         <div className="right_side">
             <Navbar firstName={'mahmoud'} image={Image}  />
-            {this.props.children}
+            <section className="content">
+              {this.props.children}
+            </section>
         </div>
       </div>
     )

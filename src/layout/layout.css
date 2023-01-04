@@ -1,4 +1,15 @@
+:root {
+    --w : calc(100vw - 100px )
+}
+
 .layout {
+    overflow: hidden;
+    width: 100vw;
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 100px var(--w);
+}
+
+.content {
+    padding-left: 35px;
+    overflow: hidden;
 }
