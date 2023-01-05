@@ -41,6 +41,10 @@ a {
   text-decoration: none;
 }
 
+ul,ol {
+  list-style-type: none;
+}
+
 .btn {
   background: #ffffff;
   color: #000000;
