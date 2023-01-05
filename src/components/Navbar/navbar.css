@@ -1,6 +1,6 @@
 nav {
   width: 100%;
-  padding: 25px;
+  padding: 15px;
   padding-bottom: 0;
   display: flex;
   justify-content: flex-end;
@@ -34,6 +34,6 @@ nav .image:hover {
 }
 
 nav .image img {
-  max-width: 92%;
+  max-width: 95%;
   border-radius: 20px;
 }

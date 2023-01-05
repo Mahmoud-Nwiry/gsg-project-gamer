@@ -1,19 +1,22 @@
 const users = [
     {
         id: 1,
-        name: 'John Doe',
+        firstName: 'John',
+        lastName: 'Doe',
         email: 'john@doe.com',
         password: 'John*123',
     },
     {
         id: 2,
-        name: 'Mahmoud Nwiry',
+        firstName: 'Mahmoud',
+        lastName: 'Nwiry',
         email: 'mahmoud@gamil.com',
         password: 'Mahmoud*123',
     },
     {
         id: 3,
-        name: 'Ahmed Naser',
+        firstName: 'Ahmed',
+        lastName: 'Naser',
         email: 'ahmed@naser.com',
         password: 'Ahmed*123',
     },

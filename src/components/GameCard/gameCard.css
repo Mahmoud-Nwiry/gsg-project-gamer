@@ -1,7 +1,7 @@
 @import url('https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css');
 .game_card {
-    width: 500px;
-    height: 250px;
+    width: 400px;
+    height: 200px;
     background-repeat: no-repeat;
     display: flex;
     justify-content: flex-end;
@@ -10,7 +10,6 @@
     border-radius: 50px;
     overflow: hidden;
 }
-
 
 .game_card .game_image img {
     position: absolute;
@@ -28,6 +27,12 @@
 .game_card:hover .game_image img{
     scale: 1.15;
     border-bottom-left-radius: 44px;
+    border-bottom-right-radius: 0px;
+}
+.game_card.rtl:hover .game_image img{
+    scale: 1.15;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 44px;
 }
 
 
@@ -38,19 +43,19 @@
     flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
-    padding: 15px 10px;
+    padding: 15px;
     width: 100%;
 }
 
 .game_card .side2 .game_logo img{
-    max-width: 75%;
+    max-width: 60%;
 }
 
 .game_card .side2 .text p {
     font-family: 'gilroy';
     font-weight: 700;
-    font-size: 20px;
-    line-height: 25px;
+    font-size: 18px;
+    line-height: 22px;
     text-align: right;
     color: #FFFFFF;
     width: 350px;
