@@ -19,6 +19,7 @@ import Button from "../../components/Button";
 
 import Swal from "sweetalert2";
 import { Link, Navigate } from "react-router-dom";
+import axios from "axios";
 
 const icons = [
   {
@@ -53,6 +54,7 @@ class Login extends Component {
     password: "",
     isLogingIn: false,
     isLoading: false,
+    userId : null
   };
 
   handelEmail = (e) => {
@@ -63,8 +65,26 @@ class Login extends Component {
     this.setState({ password: e.target.value });
   };
 
-  sendData = (e) => {
+  sendData = async (e) => {
     e.preventDefault();
+
+    this.setState({ isLoading: true });
+
+    try{
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/users/login`,
+        { email: this.state.email, password: this.state.password }
+      );
+      
+      localStorage.setItem('gamerUser', JSON.stringify(res.data));
+      this.props.login(res.data._id);
+      this.setState({ isLoading: false, isLogingIn: true, userId : res.data._id });
+
+    }
+    catch (e) {
+      console.log(e);
+    }
+
   };
 
   render() {
@@ -118,13 +138,19 @@ class Login extends Component {
                 placeholder="•••••••••"
                 returnValue={this.handelPassword}
               />
-              <Button text="Login" classes="btn btn-primary mt" />
+              <Button
+                text={this.state.isLoading ? "Loading ..." : "Login"}
+                classes={`btn btn-primary mt ${
+                  this.state.isLoading ? "loading" : ""
+                }`}
+              />
               <p className="create_account">
                 Don’t have an account? <Link to="/signup">Register</Link>
               </p>
             </form>
           </Container>
         </div>
+        {this.state.isLogingIn ? <Navigate to={`/dashboard/${this.state.userId}`} /> : ''}
       </div>
     );
   }

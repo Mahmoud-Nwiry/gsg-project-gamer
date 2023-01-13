@@ -10,15 +10,31 @@ import Error404 from './pages/Error404';
 class App extends Component {
 
   state = {
-    isAuth : true,
+    isAuth : false,
     userId : null,
+  }
+
+  componentDidMount(){
+    const user = localStorage.getItem('gamerUser');
+    if(user){
+      this.setState({isAuth :true, userId : JSON.parse(user)._id});
+    }
+  }
+
+  login = (id) => {
+    this.setState({ isAuth : true, userId : id});
+  }
+
+  logout = () => {
+    this.setState({isAuth : false, userId :null})
+    localStorage.removeItem('gamerUser');
   }
 
   render () {
     return (
       <Routes>
         <Route index element={this.state.isAuth ? <Navigate to={`/dashboard/${this.state.userId}`} /> : <Navigate to="/login" />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login login={this.login} />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/dashboard/:id' element={<Home />} />
         <Route path='*' element={<Error404 />} />
