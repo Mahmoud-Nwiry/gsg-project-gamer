@@ -49,14 +49,10 @@ export default class Users extends Component {
         <section className="users__list">
             {
                 this.state.users.map(item => (
-                    <ul className="user_info" key={item._id}>
-                        {/* <li>ID : <span>{item._id}</span></li> */}
+                    <ul className="user_info">
                         <li>Name : <span>{item.name}</span></li>
                         <li>Email : <span>{item.email}</span></li>
                         <li>Roles : <span>{item.isAdmin ? 'Admin' : 'User'}</span></li>
-                        {/* <li>Password : <span>{item.password}</span></li>
-                        <li>Created : <span>{new Date(item.createdAt).toLocaleString()}</span></li>
-                        <li>Updated : <span>{new Date(item.updatedAt).toLocaleString()}</span></li> */}
                         <li className="control">
                           <Link className="view" to={`/dashboard/users/${item._id}`}>View</Link>
                           <Link className="delete" style={{color : 'red'}}>Delete</Link>

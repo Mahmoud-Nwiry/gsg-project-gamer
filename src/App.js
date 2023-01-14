@@ -7,6 +7,7 @@ import Signup from './pages/Signup'
 import Home from './pages/Home'; 
 import Profile from './pages/Profile'; 
 import Users from './pages/Users'; 
+import User from './pages/User'; 
 import Error404 from './pages/Error404';
 import Layout from './layout';
 
@@ -43,6 +44,8 @@ class App extends Component {
           <Route index element={<Home />} />
           <Route path='profile' element={<Profile />} />
           <Route path='users' element={<Users />} />
+          <Route path='users/:userId' element={<User />}
+           />
         </Route>
         <Route path='*' element={<Error404 />} />
       </Routes>
