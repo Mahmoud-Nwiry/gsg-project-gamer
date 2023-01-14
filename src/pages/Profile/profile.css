@@ -2,22 +2,22 @@
     min-height: 70vh;
     padding-bottom: 20px;
 }
-.profile .info {
+.user_info {
     margin-top: 40px;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
-    width: fit-content;
+    width: 400px;
     border-radius: 10px;
     font-size: 18px;
     font-weight: 600;
 }
 
-.profile .info li {
+.user_info li {
     margin-top: 10px;
 }
 
-.profile .info span {
+.user_info span {
     font-size: 17px;
     color : #456
 }

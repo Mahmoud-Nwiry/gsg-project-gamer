@@ -77,7 +77,7 @@ class Login extends Component {
       );
       
       localStorage.setItem('gamerUser', JSON.stringify(res.data));
-      this.props.login(res.data._id);
+      this.props.login(res.data);
       this.setState({ isLoading: false, isLogingIn: true, userId : res.data._id });
 
     }
@@ -150,7 +150,7 @@ class Login extends Component {
             </form>
           </Container>
         </div>
-        {this.state.isLogingIn ? <Navigate to={`/dashboard/${this.state.userId}`} /> : ''}
+        {this.state.isLogingIn ? <Navigate to={`/dashboard`} /> : ''}
       </div>
     );
   }

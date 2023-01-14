@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup'
 import Home from './pages/Home'; 
 import Profile from './pages/Profile'; 
+import Users from './pages/Users'; 
 import Error404 from './pages/Error404';
 import Layout from './layout';
 
@@ -13,34 +14,35 @@ class App extends Component {
 
   state = {
     isAuth : false,
-    userId : null,
+    user : {}
   }
 
   componentDidMount(){
-    const user = localStorage.getItem('gamerUser');
+    const user = JSON.parse(localStorage.getItem('gamerUser'));
     if(user){
-      this.setState({isAuth :true, userId : JSON.parse(user)._id});
+      this.setState({isAuth :true, user : user })
     }
   }
 
-  login = (id) => {
-    this.setState({ isAuth : true, userId : id});
+  login = (user) => {
+    this.setState({ isAuth : true, user : user});
   }
 
   logout = () => {
-    this.setState({isAuth : false, userId :null})
+    this.setState({isAuth : false, user :null})
     localStorage.removeItem('gamerUser');
   }
 
   render () {
     return (
       <Routes>
-        <Route index element={this.state.isAuth ? <Navigate to={`/dashboard/${this.state.userId}`} /> : <Navigate to="/login" />} />
+        <Route index element={this.state.isAuth ? <Navigate to={`/dashboard`} /> : <Navigate to="/login" />} />
         <Route path='/login' element={<Login login={this.login} />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/dashboard/:id' element={<Layout />}>
+        <Route path='/dashboard' element={<Layout isAuth={this.state.isAuth} />}>
           <Route index element={<Home />} />
           <Route path='profile' element={<Profile />} />
+          <Route path='users' element={<Users />} />
         </Route>
         <Route path='*' element={<Error404 />} />
       </Routes>

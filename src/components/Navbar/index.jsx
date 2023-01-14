@@ -6,7 +6,7 @@ export default class index extends Component {
     return (
       <nav>
         <div className="text">
-            <p>Welcome back, {this.props.firstName}!</p>
+            <p>Welcome back,<br />{this.props.firstName}!</p>
         </div>
         <div className="image">
             <img src={this.props.image} alt="your pic" />

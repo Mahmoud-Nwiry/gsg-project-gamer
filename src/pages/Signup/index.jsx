@@ -28,6 +28,10 @@ export default class Signup extends Component {
     strength: "nothing",
   };
 
+  componentDidMount () {
+    window.scrollY = 0;
+  }
+
   returnValue = (e) => {
     const { id, value } = e.target;
     this.setState({ [id]: value });
