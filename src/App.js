@@ -5,7 +5,9 @@ import './App.css';
 import Login from './pages/Login';
 import Signup from './pages/Signup'
 import Home from './pages/Home'; 
+import Profile from './pages/Profile'; 
 import Error404 from './pages/Error404';
+import Layout from './layout';
 
 class App extends Component {
 
@@ -36,7 +38,10 @@ class App extends Component {
         <Route index element={this.state.isAuth ? <Navigate to={`/dashboard/${this.state.userId}`} /> : <Navigate to="/login" />} />
         <Route path='/login' element={<Login login={this.login} />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/dashboard/:id' element={<Home />} />
+        <Route path='/dashboard/:id' element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path='profile' element={<Profile />} />
+        </Route>
         <Route path='*' element={<Error404 />} />
       </Routes>
     )

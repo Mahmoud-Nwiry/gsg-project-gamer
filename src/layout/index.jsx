@@ -1,4 +1,4 @@
-import { useParams, redirect } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
 import './layout.css'
 
 import Sidebar from '../components/Sidebar'
@@ -20,7 +20,7 @@ const Layout = ({children}) => {
         <div className="right_side">
             <Navbar firstName={user?.firstName} image={Image}  />
             <section className="content">
-              {children}
+              <Outlet />
             </section>
         </div>
       </div>
