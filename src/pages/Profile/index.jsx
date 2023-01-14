@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { H2 } from "../../components/Typography";
 
 import './profile.css'
+import Loading from "../../components/Loading";
+
 
 export default class Profile extends Component {
   state = {
@@ -31,6 +33,7 @@ export default class Profile extends Component {
   render() {
     return (
       <div className="profile">
+        {this.state.isLoading && <Loading />}
         <H2 text="My Profile" />
         {
           this.state.isLoading || (<InfoList user={this.state.user} />)
@@ -43,7 +46,7 @@ export default class Profile extends Component {
 class InfoList extends Component {
   render () {
     return (
-      <ul className="info">
+      <ul className="user_info">
             <li>ID : <span>{this.props.user._id}</span></li>
             <li>Name : <span>{this.props.user.name}</span></li>
             <li>Email : <span>{this.props.user.email}</span></li>

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import './users.css'
+import axios from "axios";
 
 import { Link, Navigate } from "react-router-dom";
 import { H2 } from "../../components/Typography";
 
-import axios from "axios";
+import Loading from "../../components/Loading";
+
 
 export default class Users extends Component {
   state = {
@@ -34,6 +36,9 @@ export default class Users extends Component {
         } catch (err) {
             console.log(err);
         }
+        finally {
+          this.setState({ isLoading : false})
+        }
       }
     }
   }
@@ -43,7 +48,7 @@ export default class Users extends Component {
       <div>
         {!this.state.isAuth ? <Navigate to="/login" /> : ""}
         {!this.state.isAdmin ? <Navigate to="/dashboard" /> : ""}
-
+        {this.state.isLoading && <Loading />}
         <H2 text="Users" />
 
         <section className="users__list">

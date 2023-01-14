@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { H2 } from '../../components/Typography';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
+import Loading from "../../components/Loading";
 
 
 class User extends Component {
@@ -33,10 +33,12 @@ class User extends Component {
                 { headers: { "Authorization": `Bearer ${user.token}` } }
               );
     
-              console.log(res.data);
               this.setState({ detailsUser : res.data})
             } catch (err) {
                 console.log(err);
+            }
+            finally {
+                this.setState({ isLoading: false });
             }
           }
         }
@@ -45,6 +47,7 @@ class User extends Component {
   render() {
     return (
       <section className='single__user' style={{paddingBottom : 20}}>
+        {this.state.isLoading && <Loading />}
         <H2 text="User Details" />
         <ul className="user_info">
             <li>ID : <span>{this.state.detailsUser._id}</span></li>

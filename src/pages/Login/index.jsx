@@ -78,11 +78,14 @@ class Login extends Component {
       
       localStorage.setItem('gamerUser', JSON.stringify(res.data));
       this.props.login(res.data);
-      this.setState({ isLoading: false, isLogingIn: true, userId : res.data._id });
+      this.setState({isLogingIn: true, userId : res.data._id });
 
     }
     catch (e) {
       console.log(e);
+    }
+    finally {
+      this.setState({isLoading: false})
     }
 
   };
