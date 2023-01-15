@@ -3,8 +3,10 @@ nav {
   padding: 15px;
   padding-bottom: 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 10px;
+  align-items: center;
+  padding-left: 30px;
 }
 
 nav .text {
@@ -36,4 +38,10 @@ nav .image:hover {
 nav .image img {
   max-width: 95%;
   border-radius: 20px;
+}
+
+.my_info__nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }

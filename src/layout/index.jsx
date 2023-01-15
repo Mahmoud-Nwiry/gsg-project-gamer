@@ -1,4 +1,5 @@
-import { useParams, redirect } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Outlet, Navigate } from 'react-router-dom'
 import './layout.css'
 
 import Sidebar from '../components/Sidebar'
@@ -6,25 +7,40 @@ import Navbar from '../components/Navbar'
 
 import Image from '../assets/images/pirsonal.png'
  
-import users from '../mock/users'
 
-const Layout = ({children}) => {
+class Layout extends Component {
 
-    const {id} = useParams()
+    state = {
+      name : '',
+      isAuth : true,
+    }
 
-    const user = users.find(user => user.id === Number(id));
+    componentDidMount(){
+      const user = JSON.parse(localStorage.getItem('gamerUser'))
+      if(user) {
+        this.setState({name : user.name})
+      }
+      else {
+        this.setState({isAuth : false})
+      }
+    }
 
-    return (
-      <div className='layout'>
-        <Sidebar />
-        <div className="right_side">
-            <Navbar firstName={user?.firstName} image={Image}  />
-            <section className="content">
-              {children}
-            </section>
+    render () {
+      return (
+        <div className='layout'>
+          <Sidebar />
+          <div className="right_side">
+              <Navbar firstName={this.state.name} image={Image} logout={this.props.logout}  />
+              <section className="content">
+                <Outlet />
+              </section>
+          </div>
+          {
+            this.state.isAuth ? '' : <Navigate to='/login' />
+          }
         </div>
-      </div>
-    )
+      )
+    }
   }
 
 export default Layout

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./home.css";
 
-import Layout from "../../layout";
-
 import { H2 } from "../../components/Typography";
 import GameCard from "../../components/GameCard";
 import LastPlayedItem from "../../components/LastPlayedItem";
@@ -25,8 +23,6 @@ const trophy = {
 export default class Home extends Component {
   render() {
     return (
-      <section className="home_page">
-        <Layout>
           <section className="new_games">
             <H2 text="NEW GAMES" />
             <div className="games_box">
@@ -73,8 +69,6 @@ export default class Home extends Component {
               </div>
             </section>
           </section>
-        </Layout>
-      </section>
     );
   }
 }

@@ -65,6 +65,15 @@ ul,ol {
   color: #FFFFFF;
 }
 
+.btn.btn_loading {
+  background-color: #ccc;
+}
+
+.btn.btn-primary.btn_loading {
+  background: #5f9cf3;
+}
+
+
 .btn .icon {
   position: absolute;
   top: 50%;
