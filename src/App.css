@@ -65,11 +65,11 @@ ul,ol {
   color: #FFFFFF;
 }
 
-.btn.loading {
+.btn.btn_loading {
   background-color: #ccc;
 }
 
-.btn.btn-primary.loading {
+.btn.btn-primary.btn_loading {
   background: #5f9cf3;
 }
 

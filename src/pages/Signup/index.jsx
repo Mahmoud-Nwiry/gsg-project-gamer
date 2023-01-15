@@ -18,9 +18,11 @@ import StrengthPassword from "../../components/StrengthPassword";
 import Swal from "sweetalert2";
 import signupSchema from "../../validation/signupValidation";
 import { Link, Navigate } from "react-router-dom";
+import axios from "axios";
 
 export default class Signup extends Component {
   state = {
+    name: "",
     email: "",
     password: "",
     password2: "",
@@ -106,19 +108,25 @@ export default class Signup extends Component {
         password2: this.state.password2,
         agree: this.state.agree,
       })
-      .then((isValid) => {
-        if (isValid)
-          Swal.fire({
-            title: "Signup Success",
-            text: "Your account has been successfully created",
-            type: "success",
-            icon: "success",
-            timer: 1500,
-          });
+      .then( async (isValid) => {
+        if (isValid){
 
-        setTimeout(() => {
-          this.props.changePage("login");
-        }, 1500);
+          try {
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/users/signup`,
+              {name: this.state.name, email: this.state.email, password: this.state.password}
+            )
+            localStorage.setItem('gamerUser', JSON.stringify(res.data))
+            this.setState({isAuth : true})
+          }
+          catch (err) {
+            console.log(err);
+          }
+          finally {
+            
+          }
+
+        }
+
       })
       .catch((err) => {
         Swal.fire({
@@ -163,6 +171,14 @@ export default class Signup extends Component {
             <Body text="For the purpose of gamers regulation, your details are required." />
             <hr style={{ border: "1px solid #F5F5F5", margin: "16px 0" }} />
             <form onSubmit={this.sendData}>
+              <Input
+                label="Name*"
+                value={this.state.name}
+                id="name"
+                type="text"
+                placeholder="Enter your name"
+                returnValue={this.returnValue}
+              />
               <Input
                 label="Email address*"
                 value={this.state.email}

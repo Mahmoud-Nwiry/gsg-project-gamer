@@ -30,7 +30,7 @@ class Layout extends Component {
         <div className='layout'>
           <Sidebar />
           <div className="right_side">
-              <Navbar firstName={this.state.name} image={Image}  />
+              <Navbar firstName={this.state.name} image={Image} logout={this.props.logout}  />
               <section className="content">
                 <Outlet />
               </section>

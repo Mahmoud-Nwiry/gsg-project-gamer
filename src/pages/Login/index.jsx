@@ -151,7 +151,7 @@ class Login extends Component {
               <Button
                 text={this.state.isLoading ? "Loading ..." : "Login"}
                 classes={`btn btn-primary mt ${
-                  this.state.isLoading ? "loading" : ""
+                  this.state.isLoading ? "btn_loading" : ""
                 }`}
               />
               <p className="create_account">

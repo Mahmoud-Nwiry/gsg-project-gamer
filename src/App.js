@@ -40,7 +40,7 @@ class App extends Component {
         <Route index element={this.state.isAuth ? <Navigate to={`/dashboard`} /> : <Navigate to="/login" />} />
         <Route path='/login' element={<Login login={this.login} />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/dashboard' element={<Layout isAuth={this.state.isAuth} />}>
+        <Route path='/dashboard' element={<Layout isAuth={this.state.isAuth} logout={this.logout} />}>
           <Route index element={<Home />} />
           <Route path='profile' element={<Profile />} />
           <Route path='users' element={<Users />} />
