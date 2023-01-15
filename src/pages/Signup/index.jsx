@@ -17,7 +17,7 @@ import StrengthPassword from "../../components/StrengthPassword";
 
 import Swal from "sweetalert2";
 import signupSchema from "../../validation/signupValidation";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export default class Signup extends Component {
   state = {
@@ -26,10 +26,15 @@ export default class Signup extends Component {
     password2: "",
     agree: true,
     strength: "nothing",
+    isAuth : false
   };
 
   componentDidMount () {
     window.scrollY = 0;
+    const user = JSON.parse(localStorage.getItem('gamerUser'));
+    if(user){
+      this.setState({ isAuth: true });
+    }
   }
 
   returnValue = (e) => {
@@ -202,6 +207,7 @@ export default class Signup extends Component {
             </form>
           </Container>
         </div>
+        {this.state.isAuth ? <Navigate to='/dashboard' /> : ''}
       </div>
     );
   }

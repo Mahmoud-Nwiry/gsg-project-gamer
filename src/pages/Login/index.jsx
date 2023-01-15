@@ -54,8 +54,15 @@ class Login extends Component {
     password: "",
     isLogingIn: false,
     isLoading: false,
-    userId : null
+    userId : null,
   };
+
+  componentDidMount () {
+    const user = JSON.parse(localStorage.getItem('gamerUser'));
+    if(user){
+      this.setState({ isLogingIn: true });
+    }
+  }
 
   handelEmail = (e) => {
     this.setState({ email: e.target.value });
