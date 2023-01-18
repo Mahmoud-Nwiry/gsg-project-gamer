@@ -11,6 +11,7 @@ export default class index extends Component {
     return (
       <nav>
         <p
+          className="logout"
           onClick={() => {
             this.props.logout();
             this.setState({ isLogedOut: true });
