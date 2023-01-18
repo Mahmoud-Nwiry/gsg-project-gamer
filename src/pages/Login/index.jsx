@@ -86,15 +86,14 @@ class Login extends Component {
       localStorage.setItem('gamerUser', JSON.stringify(res.data));
       this.props.login(res.data);
       this.setState({isLogingIn: true, userId : res.data._id });
-
+      this.props.alertOpen(`Welcome ${res.data.name}`, 'Success', 'success', 4000);
     }
-    catch (e) {
-      console.log(e);
+    catch (err) {
+      this.props.alertOpen(err.response.data.message, 'Error', 'error', 10000);
     }
     finally {
       this.setState({isLoading: false})
     }
-
   };
 
   render() {

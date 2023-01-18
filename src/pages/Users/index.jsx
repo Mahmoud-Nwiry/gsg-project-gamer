@@ -34,7 +34,7 @@ export default class Users extends Component {
 
           this.setState({ users : res.data})
         } catch (err) {
-            console.log(err);
+          this.props.alertOpen(err.response.data.message, 'Error', 'error', 10000);
         }
         finally {
           this.setState({ isLoading : false})
