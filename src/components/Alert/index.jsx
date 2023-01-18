@@ -18,7 +18,6 @@ export default class Alert extends Component {
           this.state.isOpen ? "visiable" : "hide"
         }`}
       >
-        {console.log(this.state.isOpen)}
         {this.props.alert.type} : {this.props.alert.message} {}
       </div>
     );
