@@ -24,7 +24,7 @@ export default class Profile extends Component {
       this.setState({user : res.data});
 
     } catch (err) {
-      console.log(err);
+      this.props.alertOpen(err.response.data.message, 'Error', 'error', 10000);
     } finally {
       this.setState({ isLoading: false });
     }

@@ -117,9 +117,10 @@ export default class Signup extends Component {
             )
             localStorage.setItem('gamerUser', JSON.stringify(res.data))
             this.setState({isAuth : true})
+            this.props.alertOpen(`Welcome ${res.data.name}, Your account created Successfully`, 'Success', 'success', 4000);
           }
           catch (err) {
-            console.log(err);
+            this.props.alertOpen(err.response.data.message, 'Error', 'error', 10000);
           }
           finally {
             
