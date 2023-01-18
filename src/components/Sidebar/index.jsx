@@ -15,12 +15,14 @@ export default class Sidebar extends Component {
     return (
       <aside>
         <div className="sidebar__logo">
+          <NavLink to="/dashboard">
             <img src={Logo} alt="logo" />
+          </NavLink>
         </div>
 
         <ul className="sidebar__links">
-            <li><NavLink to='#' ><img src={Like} alt="heart" /></NavLink></li>
-            <li><NavLink to='#' ><img src={Setting} alt="settings" /></NavLink></li>
+            <li><NavLink to='/dashboard/profile' ><img src={Like} alt="heart" /></NavLink></li>
+            <li><NavLink to='/dashboard/users' ><img src={Setting} alt="settings" /></NavLink></li>
             <li><NavLink to='#' ><img src={Puzzle} alt="puzzle" /></NavLink></li>
         </ul>
 
