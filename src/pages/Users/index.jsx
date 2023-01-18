@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import './users.css'
+import "./users.css";
 import axios from "axios";
 
 import { Link, Navigate } from "react-router-dom";
 import { H2 } from "../../components/Typography";
 
 import Loading from "../../components/Loading";
-
 
 export default class Users extends Component {
   state = {
@@ -29,19 +28,47 @@ export default class Users extends Component {
         try {
           const res = await axios.get(
             `${process.env.REACT_APP_API_URL}/users`,
-            { headers: { "Authorization": `Bearer ${user.token}` } }
+            { headers: { Authorization: `Bearer ${user.token}` } }
           );
 
-          this.setState({ users : res.data})
+          this.setState({ users: res.data });
         } catch (err) {
-          this.props.alertOpen(err.response.data.message, 'Error', 'error', 10000);
-        }
-        finally {
-          this.setState({ isLoading : false})
+          this.props.alertOpen(
+            err.response.data.message,
+            "Error",
+            "error",
+            10000
+          );
+        } finally {
+          this.setState({ isLoading: false });
         }
       }
     }
   }
+
+  deleteUser = async (id) => {
+    if(id !== this.state.user._id){
+      try {
+        const res = await axios.delete(
+          `${process.env.REACT_APP_API_URL}/users/${id}`,
+          { headers: { Authorization: `Bearer ${this.state.user.token}` } }
+        );
+        this.props.alertOpen(
+          `User ${id} has been deleted`,
+          "Success",
+          "success",
+          5000
+        );
+        let newUsers = this.state.users.filter((user) => user._id !== id);
+        this.setState((prev) => ({ users: [...newUsers] }));
+      } catch (err) {
+        this.props.alertOpen(err.response.data.message, "Error", "error", 5000);
+      }
+    }
+    else {
+      this.props.alertOpen('You can\'t delete your self', "Error", "error", 5000);
+    }
+  };
 
   render() {
     return (
@@ -52,21 +79,32 @@ export default class Users extends Component {
         <H2 text="Users" />
 
         <section className="users__list">
-            {
-                this.state.users.map(item => (
-                    <ul className="user_info">
-                        <li>Name : <span>{item.name}</span></li>
-                        <li>Email : <span>{item.email}</span></li>
-                        <li>Roles : <span>{item.isAdmin ? 'Admin' : 'User'}</span></li>
-                        <li className="control">
-                          <Link className="view" to={`/dashboard/users/${item._id}`}>View</Link>
-                          <Link className="delete" style={{color : 'red'}}>Delete</Link>
-                        </li>
-                    </ul>
-                ))
-            }
+          {this.state.users.map((item) => (
+            <ul className="user_info">
+              <li>
+                Name : <span>{item.name}</span>
+              </li>
+              <li>
+                Email : <span>{item.email}</span>
+              </li>
+              <li>
+                Roles : <span>{item.isAdmin ? "Admin" : "User"}</span>
+              </li>
+              <li className="control">
+                <Link className="view" to={`/dashboard/users/${item._id}`}>
+                  View
+                </Link>
+                <Link
+                  className="delete"
+                  style={{ color: "red" }}
+                  onClick={() => this.deleteUser(item._id)}
+                >
+                  Delete
+                </Link>
+              </li>
+            </ul>
+          ))}
         </section>
-
       </div>
     );
   }
