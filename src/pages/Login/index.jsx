@@ -17,7 +17,6 @@ import OrLine from "../../components/OrLine";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 
-import Swal from "sweetalert2";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 
