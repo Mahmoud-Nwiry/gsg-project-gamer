@@ -49,7 +49,7 @@ export default class Users extends Component {
   deleteUser = async (id) => {
     if(id !== this.state.user._id){
       try {
-        const res = await axios.delete(
+        await axios.delete(
           `${process.env.REACT_APP_API_URL}/users/${id}`,
           { headers: { Authorization: `Bearer ${this.state.user.token}` } }
         );
