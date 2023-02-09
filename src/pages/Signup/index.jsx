@@ -112,7 +112,7 @@ export default class Signup extends Component {
         if (isValid){
 
           try {
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/users/signup`,
+            const res = await axios.post(`https://react-tt-api.onrender.com/api/users/signup`,
               {name: this.state.name, email: this.state.email, password: this.state.password}
             )
             localStorage.setItem('gamerUser', JSON.stringify(res.data))

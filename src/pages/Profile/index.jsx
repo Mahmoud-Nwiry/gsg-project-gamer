@@ -17,7 +17,7 @@ export default class Profile extends Component {
     const token = JSON.parse(localStorage.getItem('gamerUser')).token;
 
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/users/profile`, {
+      const res = await axios.get(`https://react-tt-api.onrender.com/api/users/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
