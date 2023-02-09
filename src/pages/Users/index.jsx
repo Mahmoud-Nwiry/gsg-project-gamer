@@ -27,7 +27,7 @@ export default class Users extends Component {
       if (user.isAdmin) {
         try {
           const res = await axios.get(
-            `${process.env.REACT_APP_API_URL}/users`,
+            `https://react-tt-api.onrender.com/api/users`,
             { headers: { Authorization: `Bearer ${user.token}` } }
           );
 
@@ -50,7 +50,7 @@ export default class Users extends Component {
     if(id !== this.state.user._id){
       try {
         await axios.delete(
-          `${process.env.REACT_APP_API_URL}/users/${id}`,
+          `https://react-tt-api.onrender.com/api/users/${id}`,
           { headers: { Authorization: `Bearer ${this.state.user.token}` } }
         );
         this.props.alertOpen(

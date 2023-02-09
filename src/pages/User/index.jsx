@@ -29,7 +29,7 @@ class User extends Component {
           if (user.isAdmin) {
             try {
               const res = await axios.get(
-                `${process.env.REACT_APP_API_URL}/users/${userId}`,
+                `https://react-tt-api.onrender.com/api/users/${userId}`,
                 { headers: { "Authorization": `Bearer ${user.token}` } }
               );
     
